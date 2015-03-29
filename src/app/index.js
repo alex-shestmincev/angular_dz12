@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('dz12', ['ngMaterial',/* 'ngMessages',*/ 'ui.router'])
+angular.module('dz12', ['ngMaterial', 'ngMessages', 'ui.router','pascalprecht.translate'])
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('home', {

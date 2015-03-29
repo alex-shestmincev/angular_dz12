@@ -1,35 +1,53 @@
-<div class="container" layout="column">
+<md-toolbar class="md-primary">
+    <h1 class="md-toolbar-tools">
+        Top Secret Project
+    </h1>
 
-    <md-content class="md-padding">
-        <form name="userForm">
+</md-toolbar>
+<md-content class="md-padding">
+    <form name="userForm" method="post" ui-sref="register">
+        <md-input-container>
+            <label>{{ 'LOGIN' | translate }}</label>
+            <input minlength="3" required name="login" ng-model="login">
+            <div ng-messages="userForm.login.$error">
+                <div ng-message="required">{{ 'REQUIRED' | translate }}</div>
+                <div ng-message="minlength">{{ 'TOOSHORT' | translate }}</div>
+                <div ng-message="loginerror">{{ 'LOGIN_INVALID' | translate }}</div>
+                <div ng-message="custom">{{userForm.email.$error.custom}}</div>
+            </div>
+        </md-input-container>
 
-            <div layout layout-sm="column">
-                <md-input-container flex>
-                    <label>Login</label>
-                    <input ng-model="user.login">
-                </md-input-container>
+        <md-input-container>
+            <label>{{ 'EMAIL' | translate }}</label>
+            <input type="email" required name="email" ng-model="email">
+            <div ng-messages="userForm.email.$error">
+                <div ng-message="required">{{ 'REQUIRED' | translate }}</div>
+                <div ng-message="email">{{ 'EMAIL_INVALID' | translate }}</div>
+                <div ng-message="custom">{{userForm.email.$error.custom}}</div>
             </div>
-            <div layout layout-sm="column">
-                <md-input-container flex>
-                    <label>Password</label>
-                    <input ng-model="user.password">
-                </md-input-container>
-            </div>
-            <div layout layout-sm="column">
-                <md-input-container flex>
-                    <label>Confirm password</label>
-                    <input ng-model="user.confirm_password">
-                </md-input-container>
-            </div>
-            <div layout layout-sm="column">
-                <md-input-container flex>
-                    <label>E-mail</label>
-                    <input ng-model="user.email">
-                </md-input-container>
-            </div>
+        </md-input-container>
 
+        <md-input-container>
+            <label>{{ 'PASSWORD' | translate }}</label>
+            <input type="password" autocomplete="off" required name="password" ng-model="password"
+                   ng-pattern="/^(?=[a-zA-Z])(?=.*[#\$_])(?=.*[A-Z])(?=.*[a-z])(?!.*[^a-zA-Z0-9#\$_])(?!.*\s)/"        >
+            <div ng-messages="userForm.password.$error">
+                <div ng-message="required">{{ 'REQUIRED' | translate }}</div>
+                <div ng-message="pattern">{{ 'PASSWORD_INVALID' | translate }}</div>
+                <div ng-message="custom">{{userForm.email.$error.custom}}</div>
+            </div>
+        </md-input-container>
+
+        <md-input-container>
+            <label>{{ 'CONFIRM_PASSWORD' | translate }}</label>
+            <input type="password" autocomplete="off" required name="confirm_password" ng-model="confirm_password">
+            <div ng-messages="userForm.confirm_password.$error" >
+                <div ng-message="required">{{ 'REQUIRED' | translate }}</div>
+                <div ng-message="equal">{{ 'PASSWORD_BAD_CONFIRM' | translate }}</div>
+            </div>
+        </md-input-container>
+
+        <br/>
+        <md-button ng-click="Register()" class="md-raised md-primary">{{ 'REGISTER' | translate }}</md-button>
         </form>
-    </md-content>
-
-
-</div>
+</md-content>
